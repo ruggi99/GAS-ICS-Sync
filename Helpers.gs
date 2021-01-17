@@ -341,6 +341,15 @@ function createEvent(event, calendarTz){
     if(["opaque", "transparent"].indexOf(transparency) > -1)
       newEvent.transparency = transparency;
   }
+  
+  if (event.hasProperty('color')){
+    var color = event.getFirstPropertyValue('color').toString();
+    color = parseInt(color);
+    if (color != NaN)
+      newEvent.colorId = color;
+    else
+      newEvent.colorId = 0;
+  }
 
   if (icalEvent.startDate.isDate){
     if (0 <= defaultAllDayReminder && defaultAllDayReminder <= 40320){
